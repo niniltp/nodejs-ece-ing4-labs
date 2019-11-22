@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-ece-lab1",
+  "version": "1.0.0",
+  "description": "ECE lab 1 with routing and dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/nodemon "
+  },
+  "author": "jonathan boutakhot, quynh-nhien phan, oceane salmeron",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
