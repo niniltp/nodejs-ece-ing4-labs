@@ -1,0 +1,17 @@
+{
+  "name": "ece-lab2-part1-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/.bin/nodemon "
+  },
+  "author": "jonathan boutakhot, quynh-nhien phan, oceane salmeron",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4"
+  }
+}
