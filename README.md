@@ -3,5 +3,4 @@
 
 Labs for the Web Technology course at ECE Paris-Lyon.
 
-Promo 2021
-*2019-2020*
+*Promo 2021* | *2019-2020*
