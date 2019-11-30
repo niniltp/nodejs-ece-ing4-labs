@@ -23,18 +23,22 @@ var MetricsHandler = /** @class */ (function () {
         stream.on('error', callback);
         stream.on('close', callback);
         metrics.forEach(function (m) {
-            stream.write({ key: "metric:" + key + m.timestamp, value: m.value });
+            stream.write({ key: "metric:" + key + ":" + m.timestamp, value: m.value });
         });
         console.log(metrics);
         stream.end();
     };
-    MetricsHandler.prototype.getAll = function (key, callback) {
+    MetricsHandler.prototype.getAll = function (key, keyTimestamp, callback) {
         var metrics = [];
         var rs = this.db.createReadStream()
             .on('data', function (data) {
-            var metric = new Metric(data.key, data.value);
-            metrics.push(metric);
-            console.log(data.key, '=', data.value);
+            var timestamp = data.key.split(':')[2];
+            var id = data.key.split(':')[1];
+            if (id === key && (timestamp === keyTimestamp || keyTimestamp === null)) {
+                var metric = new Metric(timestamp, data.value);
+                metrics.push(metric);
+                console.log(timestamp, '=', data.value, '//', id);
+            }
         })
             .on('error', function (err) {
             console.log('Oh my!', err);
@@ -46,6 +50,12 @@ var MetricsHandler = /** @class */ (function () {
         })
             .on('end', function () {
             console.log('Stream ended');
+        });
+    };
+    MetricsHandler.prototype.delete = function (userID, timestampID, callback) {
+        var key = "metric:" + userID + ":" + timestampID;
+        this.db.del(key, function (err) {
+            callback(err);
         });
     };
     return MetricsHandler;

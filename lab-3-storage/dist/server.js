@@ -19,16 +19,15 @@ app.listen(port, function (err) {
         throw err;
     }
     console.log("server is listening on port " + port);
-    // go to http://localhost:8080/
 });
 app.get('/', function (req, res) {
-    res.render('index.ejs', { name: req.params.name });
+    res.render('index.ejs', { port: port, name: req.params.name });
 });
 app.get('/hello', function (req, res) {
-    res.render('hello.ejs');
+    res.render('hello.ejs', { name: null });
 });
 app.get('/hello/:name', function (req, res) {
-    res.render('hello-someone.ejs', { name: req.params.name });
+    res.render('hello.ejs', { name: req.params.name });
 });
 var dbMet = new metrics_1.MetricsHandler('./db/metrics');
 app.post('/metrics/:id', function (req, res) {
@@ -40,18 +39,26 @@ app.post('/metrics/:id', function (req, res) {
     });
 });
 app.get('/metrics/:id', function (req, res) {
-    dbMet.getAll(req.params.id, function (result, err) {
+    dbMet.getAll(req.params.id, null, function (result, err) {
         if (err)
             throw err;
         console.log("getAll");
         res.status(200).send(result);
     });
 });
-/*app.get('/metrics.json', (req: any, res: any) => {
-    MetricsHandler.get((err: Error | null, result?: any) => {
-        if (err) {
-            throw err
-        }
-        res.json(result)
-    })
-});*/
+app.get('/metrics/:id/:timestamp', function (req, res) {
+    dbMet.getAll(req.params.id, req.params.timestamp, function (result, err) {
+        if (err)
+            throw err;
+        console.log("getAllByTimestamp");
+        res.status(200).send(result);
+    });
+});
+app.delete('/metrics/:id/:timestamp', function (req, res) {
+    dbMet.delete(req.params.id, req.params.timestamp, function (err) {
+        if (err)
+            throw err;
+        console.log("deleteByTimestamp");
+        res.status(200).send("Delete successful !");
+    });
+});
