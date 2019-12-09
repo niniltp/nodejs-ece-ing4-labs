@@ -1,7 +1,7 @@
 # Introduction
 *By Jonathan BOUTAKHOT, Quynh-Nhien PHAN, Océane SALMERON (ING4, GP03)*
 
-#### Lab 4 - middlewares
+#### Lab 4 - Middlewares
 
 This is a nodejs lab for the Web Technology course at ECE Paris-Lyon, ING4.
 
