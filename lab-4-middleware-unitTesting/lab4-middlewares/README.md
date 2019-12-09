@@ -1,26 +1,11 @@
 # Introduction
 *By Jonathan BOUTAKHOT, Quynh-Nhien PHAN, Océane SALMERON (ING4, GP03)*
 
-#### Lab 3 - Storage
+#### Lab 4 - middlewares
 
 This is a nodejs lab for the Web Technology course at ECE Paris-Lyon, ING4.
 
 ## Installation
-
-##### This app uses
-- **Nodemon** for hot reload
-- **Express**
-- **EJS**
-- **Typescript**
-- **ts-node**
-- **body-parser**
-- **encoding-down**
-- **level-ws**
-- **leveldown**
-- **levelup**
-- **@types/express**
-- **@types/node**
-- **@types/levelup**
 
 ##### Install the dependencies
 
